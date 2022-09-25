@@ -43,17 +43,13 @@
 
 ### $ 初识Go的并发
 
-- **Go Concurrency Patterns**
+- [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
 
-  {{< youtube f6kdp27TYZs >}}
-  
   `Rob Pike`(Go的3个主要创始人之一) 的一场关于Go的并发模式的演讲，`Google I/O 2012`
 
 ### $ 更进一步了解Go
 
-- **Go Programming**
-
-  {{< youtube jgVhBThJdXc >}}
+- [Go Programming](https://www.youtube.com/watch?v=jgVhBThJdXc&t=1067s)
 
   另一场演讲，`Google I/O 2010`
 
@@ -61,11 +57,15 @@
 
   Go领域公认的 "圣经" （建议直接买纸质书
 
-- **Meet The Go Team**
+- [Meet The Go Team](https://www.youtube.com/watch?v=sln-gJaURzk)
 
-  {{< youtube sln-gJaURzk >}}
-  
   Go团队就一些Go设计问题的现场提问与回答 （**重点是看大佬** ：）
+  
+- [高性能Go](https://geektutu.com/post/hpg-benchmark.html)
+
+  对如何提高go的性能方面进行了研究
+
+- [Go方面较为全面的文摘](http://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/22%20%E8%AE%B2%E9%80%9A%E5%85%B3%20Go%20%E8%AF%AD%E8%A8%80-%E5%AE%8C)
 
 ## $ Go的未来
 
@@ -73,7 +73,7 @@
 
 但是Go在不断改善（以每三个月一次小版本的形式，尤其是即将到来的`Go2`充满了令人激动的特性
 
-[Go的一些草案](https://go.googlesource.com/proposal/+/master/design/go2draft.md)
+[Go2的一些草案](https://go.googlesource.com/proposal/+/master/design/go2draft.md)
 
 让我们充满期待...**(* ^ ω ^)**
 
