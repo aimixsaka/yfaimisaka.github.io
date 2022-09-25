@@ -45,11 +45,15 @@
 
 - [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
 
+  {{< youtube id="jgVhBThJdXc" title="Go Concurrency Patterns" >}}
+  
   `Rob Pike`(Go的3个主要创始人之一) 的一场关于Go的并发模式的演讲，`Google I/O 2012`
 
 ### $ 更进一步了解Go
 
 - [Go Programming](https://www.youtube.com/watch?v=jgVhBThJdXc&t=1067s)
+
+  {{< youtube id="jgVhBThJdXc" title="Go Programming" >}}
 
   另一场演讲，`Google I/O 2010`
 
@@ -59,6 +63,8 @@
 
 - [Meet The Go Team](https://www.youtube.com/watch?v=sln-gJaURzk)
 
+  {{< youtube id="sln-gJaURzk" title="Meet The Go Team" >}}
+  
   Go团队就一些Go设计问题的现场提问与回答 （**重点是看大佬** ：）
   
 - [高性能Go](https://geektutu.com/post/hpg-benchmark.html)
