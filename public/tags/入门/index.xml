@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>入门 - 标签 - AIMISAKA</title>
+        <link>https://blog.aimisaka.site/tags/%E5%85%A5%E9%97%A8/</link>
+        <description>入门 - 标签 - AIMISAKA</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>aimisaka@outlook.com (aimisaka)</managingEditor>
+            <webMaster>aimisaka@outlook.com (aimisaka)</webMaster><lastBuildDate>Sun, 25 Sep 2022 15:00:28 &#43;0800</lastBuildDate><atom:link href="https://blog.aimisaka.site/tags/%E5%85%A5%E9%97%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>Go 概览</title>
+    <link>https://blog.aimisaka.site/go-overview/</link>
+    <pubDate>Sun, 25 Sep 2022 15:00:28 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/go-overview/</guid>
+    <description><![CDATA[Go的一些概述]]></description>
+</item></channel>
+</rss>

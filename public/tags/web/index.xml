@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Web - 标签 - AIMISAKA</title>
+        <link>https://blog.aimisaka.site/tags/web/</link>
+        <description>Web - 标签 - AIMISAKA</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>aimisaka@outlook.com (aimisaka)</managingEditor>
+            <webMaster>aimisaka@outlook.com (aimisaka)</webMaster><lastBuildDate>Sat, 30 Jul 2022 11:41:39 &#43;0800</lastBuildDate><atom:link href="https://blog.aimisaka.site/tags/web/" rel="self" type="application/rss+xml" /><item>
+    <title>Go中的请求和响应</title>
+    <link>https://blog.aimisaka.site/go-request-responce/</link>
+    <pubDate>Sat, 30 Jul 2022 10:55:25 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/go-request-responce/</guid>
+    <description><![CDATA[Go中request的结构和对请求的响应方法]]></description>
+</item><item>
+    <title>Go Web编程</title>
+    <link>https://blog.aimisaka.site/go-web/</link>
+    <pubDate>Sat, 30 Jul 2022 11:41:39 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/go-web/</guid>
+    <description><![CDATA[Go中Web编程的一些基础概念和知识]]></description>
+</item></channel>
+</rss>

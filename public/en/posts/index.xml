@@ -1,0 +1,8 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - AIMISAKA</title>
+        <link>https://blog.aimisaka.site/en/posts/</link>
+        <description>All Posts | AIMISAKA</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>aimisaka@outlook.com (aimisaka)</managingEditor>
+            <webMaster>aimisaka@outlook.com (aimisaka)</webMaster><lastBuildDate>Sun, 25 Sep 2022 15:00:28 &#43;0800</lastBuildDate><atom:link href="https://blog.aimisaka.site/en/posts/" rel="self" type="application/rss+xml" /></channel>
+</rss>

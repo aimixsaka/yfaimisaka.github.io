@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">用aop和注解重写bot - AIMISAKA</title><meta name="Description" content="ANIMASITE"><meta property="og:title" content="用aop和注解重写bot" />
+<meta property="og:description" content="利用Java的反射和SpringBoot的Aop来简化qq bot" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/" /><meta property="og:image" content="https://blog.aimisaka.site/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-29T21:56:12+08:00" />
+<meta property="article:modified_time" content="2022-07-29T21:56:12+08:00" /><meta property="og:site_name" content="AIMISAKA" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.aimisaka.site/logo.png"/>
+
+<meta name="twitter:title" content="用aop和注解重写bot"/>
+<meta name="twitter:description" content="利用Java的反射和SpringBoot的Aop来简化qq bot"/>
+<meta name="application-name" content="AIMISAKA">
+<meta name="apple-mobile-web-app-title" content="AIMISAKA">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/" /><link rel="next" href="https://blog.aimisaka.site/generator-in-python/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript>
+    
+    
+    
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "用aop和注解重写bot",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.aimisaka.site\/rewrite-bot-with-aop-and-reflection\/"
+        },"genre": "posts","keywords": "Java, Aop, QQ bot","wordcount":  2133 ,
+        "url": "https:\/\/blog.aimisaka.site\/rewrite-bot-with-aop-and-reflection\/","datePublished": "2022-07-29T21:56:12+08:00","dateModified": "2022-07-29T21:56:12+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "aimisaka"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="AIMISAKA">HOME</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/links/"> 好友 </a><a class="menu-item" href="https://github.com/yfaimisaka" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/rewrite-bot-with-aop-and-reflection/" selected>简体中文</option><option value="/en/rewrite-bot-with-aop-and-reflection/">English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="AIMISAKA">HOME</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/links/" title="">好友</a><a class="menu-item" href="https://github.com/yfaimisaka" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/rewrite-bot-with-aop-and-reflection/" selected>简体中文</option><option value="/en/rewrite-bot-with-aop-and-reflection/">English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">？前言</a></li>
+    <li><a href="#基于注解加反射">？基于注解加反射</a>
+      <ul>
+        <li><a href="#推">推</a></li>
+        <li><a href="#思路">思路</a></li>
+        <li><a href="#补充">补充</a></li>
+      </ul>
+    </li>
+    <li><a href="#基于注解和切面编程aop">？基于注解和切面编程(Aop)</a>
+      <ul>
+        <li><a href="#思路-1">思路</a></li>
+        <li><a href="#代码">代码</a></li>
+        <li><a href="#坑">坑</a></li>
+      </ul>
+    </li>
+    <li><a href="#比较与总结">？比较与总结</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">用aop和注解重写bot</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">aimisaka</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>Java</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-29">2022-07-29</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-07-29">2022-07-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2133 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/rewrite-bot-with-aop-and-reflection/" class="leancloud_visitors" data-flag-title="用aop和注解重写bot">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count"></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">？前言</a></li>
+    <li><a href="#基于注解加反射">？基于注解加反射</a>
+      <ul>
+        <li><a href="#推">推</a></li>
+        <li><a href="#思路">思路</a></li>
+        <li><a href="#补充">补充</a></li>
+      </ul>
+    </li>
+    <li><a href="#基于注解和切面编程aop">？基于注解和切面编程(Aop)</a>
+      <ul>
+        <li><a href="#思路-1">思路</a></li>
+        <li><a href="#代码">代码</a></li>
+        <li><a href="#坑">坑</a></li>
+      </ul>
+    </li>
+    <li><a href="#比较与总结">？比较与总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言" class="headerLink">
+    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>？前言</h2><p>之前就有个想法把bot用spring重写一下。了解完一些基础的东西后终于能开写了。</p>
+<h2 id="基于注解加反射" class="headerLink">
+    <a href="#%e5%9f%ba%e4%ba%8e%e6%b3%a8%e8%a7%a3%e5%8a%a0%e5%8f%8d%e5%b0%84" class="header-mark"></a>？基于注解加反射</h2><h3 id="推" class="headerLink">
+    <a href="#%e6%8e%a8" class="header-mark"></a>推</h3><p>这一点是看了<a href="https://nuotian.furry.pro/blog/archives/244" target="_blank" rel="noopener noreffer"><code>诺天的博客</code></a>。</p>
+<h3 id="思路" class="headerLink">
+    <a href="#%e6%80%9d%e8%b7%af" class="header-mark"></a>思路</h3><ul>
+<li>
+<ol>
+<li>写个自定义注解用以标记方法</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>
+<p>利用spring自带的<code>SpringUtil.getApplicationContext().getBeansWithAnnotation(Controller.class)</code>来获取所有被@Controller标记的类的bean。</p>
+<p>【注： 这里的SpringUtil是你自己的写的任意实现了<code>ApplicationContextAware</code>接口的类的名字。并且注解类型必须是Spring里的注解（@Controller,@Component等，不然获取不到bean</p>
+</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>利用反射的相关方法获取所有方法。再做个遍历筛选出带有自定义注解的方法加入一个列表。</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>监听器中调用这个列表进行逻辑判断，确定什么时候调用并传入方法需要的实参</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>这样发消息的时候就能实现自动判断并执行</li>
+</ol>
+</li>
+</ul>
+<h3 id="补充" class="headerLink">
+    <a href="#%e8%a1%a5%e5%85%85" class="header-mark"></a>补充</h3><p>博客里写的已经很详细了。但是总感觉有些功能还可以再补充一下：</p>
+<ul>
+<li>
+<p>逻辑判断和多种权限：</p>
+<p>一：<a href="https://nuotian.furry.pro/blog/" target="_blank" rel="noopener noreffer">诺天</a>写的消息的逻辑判断是放在注解中，再和bot接收到的消息进行对比来实现的。但是这样</p>
+<p>逻辑一复杂就会让监听器太冗杂。</p>
+<p>二：一个注解只能让一个方法用于Group或Friend，没法多个权限</p>
+<p>解决方案：</p>
+<ul>
+<li>
+<p>(一)让注解可重复，增加注解元素</p>
+<p>@Event注解：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Repeatable</span><span class="o">(</span><span class="n">Events</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="c1">// 元注解，使该注解能重复。@Events是含有 返回Event[] 的方法的注解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Event</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EventEnum</span> <span class="nf">eventType</span><span class="o">()</span> <span class="k">default</span> <span class="n">EventEnum</span><span class="o">.</span><span class="na">NONE</span><span class="o">;</span> <span class="c1">// EventEnum是个枚举类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">authority</span><span class="o">()</span> <span class="k">default</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// 第一层判断,是否开启这个方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">judgeByMethod</span><span class="o">()</span> <span class="k">default</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// 复杂判断时开启这个
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="nf">message</span><span class="o">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="o">;</span> <span class="c1">// 第二层判断,触发条件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Events注解：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Events</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Event</span><span class="o">[]</span> <span class="nf">value</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意@Events注解必须写@Target，且元素类型是@Event的子集</p>
+</blockquote>
+</li>
+<li>
+<p>(二)除了message的判断，再在反射时把<code>MessageChain</code>传进去。</p>
+<ul>
+<li>复杂的方法把<code>judgeByMethod</code>设为true，让方法利用<code>MessageChain</code>获得消息进行逻辑处理</li>
+<li>简单的方法把<code>judgeByMethod</code>设为false，利用<code>message</code>注解元素在监听器中进行equals判断</li>
+</ul>
+</li>
+<li>
+<p>结果：利用<code>authority</code>和<code>message</code>来灵活分配权限(虽然也不灵活就是了)；<code>judgeByMethod</code>实现判断权限转移</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="基于注解和切面编程aop" class="headerLink">
+    <a href="#%e5%9f%ba%e4%ba%8e%e6%b3%a8%e8%a7%a3%e5%92%8c%e5%88%87%e9%9d%a2%e7%bc%96%e7%a8%8baop" class="header-mark"></a>？基于注解和切面编程(Aop)</h2><p>因为Aop是根据反射开发的，于是我想能不能用Aop写一个。</p>
+<h3 id="思路-1" class="headerLink">
+    <a href="#%e6%80%9d%e8%b7%af-1" class="header-mark"></a>思路</h3><p>利用Aop对被指定注解标记的方法进行增强。在方法执行前进行一个判断。</p>
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码</h3><p>Aop部分：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">类上标注</span><span class="nd">@Aspect注解</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 切入点 实际切入的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 注意是对Events切入，因为多个Event注解其实在获取的时候会转换成@Events({@Event(xx), @Event(xx)})
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@PointCut</span><span class="o">(</span><span class="s">&#34;@annotation(com.yanfang.animabotaop.annotations.Events)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">judgeMethodPointCut</span><span class="o">()</span> <span class="o">{}</span> <span class="c1">// 切入方法？
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 环绕通知
+</span></span></span><span class="line"><span class="cl"><span class="c1">// &amp;&amp; @annotation(events)是传入参数给通知方法的一种手段，可以省去声明
+</span></span></span><span class="line"><span class="cl"><span class="c1">// around方法参数名要和@Around中一致
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ProceedingJoinPoint 是环绕通知特有的，是JoinPoint的子接口，其他通知为JoinPoint。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 该参数的功能很强大
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@Around</span><span class="o">(</span><span class="s">&#34;judgeMethodPointCut() &amp;&amp; @annotation(events)&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">around</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">ProceedingJoinPoint</span> <span class="n">jpt</span><span class="o">,</span> <span class="nd">@NotNull</span> <span class="n">Events</span> <span class="n">events</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Event</span> <span class="n">eventAnnotation</span> <span class="o">:</span> <span class="n">events</span><span class="o">.</span><span class="na">value</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取实参值（注意是“值”
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Object</span><span class="o">[]</span> <span class="n">argValues</span> <span class="o">=</span> <span class="n">jpt</span><span class="o">.</span><span class="na">getArgs</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 获取传入的event，这里默认所有方法第一个参数都是MessageEvent
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">MessageEvent</span> <span class="n">event</span> <span class="o">=</span> <span class="o">(</span><span class="n">MessageEvent</span><span class="o">)</span> <span class="n">argValues</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 进行逻辑判断，这里和用反射时一样
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">eventAnnotation</span><span class="o">.</span><span class="na">authority</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;已授权&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 有复杂逻辑就将judgeByMethod设为true， 交给方法进行复杂逻辑处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">eventAnnotation</span><span class="o">.</span><span class="na">judgeByMethod</span><span class="o">()</span> <span class="o">||</span> <span class="o">(</span><span class="n">eventAnnotation</span><span class="o">.</span><span class="na">message</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getMessage</span><span class="o">().</span><span class="na">contentToString</span><span class="o">())))</span>
+</span></span><span class="line"><span class="cl">                <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSubject</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">Group</span> <span class="o">&amp;&amp;</span> <span class="n">eventAnnotation</span><span class="o">.</span><span class="na">eventType</span><span class="o">()</span> <span class="o">==</span> <span class="n">EventEnum</span><span class="o">.</span><span class="na">GROUPEVENT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="n">argValues</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSubject</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">Friend</span> <span class="o">&amp;&amp;</span> <span class="n">eventAnnotation</span><span class="o">.</span><span class="na">eventType</span><span class="o">()</span> <span class="o">==</span> <span class="n">EventEnum</span><span class="o">.</span><span class="na">MASTEREVENT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="n">argValues</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getSubject</span><span class="o">()</span> <span class="k">instanceof</span> <span class="n">Member</span> <span class="o">&amp;&amp;</span> <span class="n">eventAnnotation</span><span class="o">.</span><span class="na">eventType</span><span class="o">()</span> <span class="o">==</span> <span class="n">EventEnum</span><span class="o">.</span><span class="na">TEMPEVENT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="n">argValues</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>监听器方法方面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@EventHandler</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">ListeningStatus</span> <span class="nf">onMessage</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="n">MessageEvent</span> <span class="n">event</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@NotNull</span> <span class="n">Test</span> <span class="n">test</span> <span class="o">=</span> <span class="n">SpringUtil</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">Test</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ListeningStatus</span><span class="o">.</span><span class="na">LISTENING</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Controller</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Events</span><span class="o">(</span><span class="nd">@Event</span><span class="o">(</span><span class="n">eventType</span> <span class="o">=</span> <span class="n">EventEnum</span><span class="o">.</span><span class="na">MASTEREVENT</span><span class="o">,</span> <span class="n">authority</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&#34;test&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(</span><span class="n">MessageEvent</span> <span class="n">event</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">event</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;event 为空&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">event</span><span class="o">.</span><span class="na">getSubject</span><span class="o">().</span><span class="na">sendMessage</span><span class="o">(</span><span class="s">&#34;get&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果：</p>
+<p>authority为true时发送了get， 为false时没发送get。说明执行了环绕通知</p>
+<h3 id="坑" class="headerLink">
+    <a href="#%e5%9d%91" class="header-mark"></a>坑</h3><ul>
+<li>注意Aop和反射不同的一点是：反射可以帮助传入实参；而Aop只能获取方法被传入的实参进行处理，而不能传入参数（毕竟Aop的原衷是不影响方法本身的情况下进行对方法的增强。
+<ul>
+<li>而实参在监听器方法里传入</li>
+</ul>
+</li>
+<li>这里不能通过获取所有Event注解， 再分别进行处理，而需要获取@Events，再通过它的value()元素获取所有的@Event注解 [即使表面上可以在方法上多写几个@Event注解。但实际是<code>@Events({@Event(...), @Event(...)})</code>,但是用反射好像可以直接获取多个@Event注解进行遍历处理</li>
+<li>注意通知的方法<code>around()</code>传参不能直接传入，而是需要在<code>@Around</code>中传入。否则会<code>报空</code>。（其实是获取方法上的@Events注解，然后传进around()方法</li>
+</ul>
+<h2 id="比较与总结" class="headerLink">
+    <a href="#%e6%af%94%e8%be%83%e4%b8%8e%e6%80%bb%e7%bb%93" class="header-mark"></a>？比较与总结</h2><p>总的来说，各有优缺。</p>
+<ul>
+<li>
+<p>反射：先进行判断，然后再根据判断结果来决定是否执行方法</p>
+</li>
+<li>
+<p>Aop：要先调用方法（注意还并没有实际执行），进而会触发通知，用通知中的方法进行逻辑判断</p>
+</li>
+<li>
+<p>反射代码较多，但是处理上更灵活，不必先调用方法</p>
+</li>
+<li>
+<p>Aop要先调用方法，才会触发通知，但是代码量更少，更简洁</p>
+</li>
+</ul>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-07-29</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/rewrite-bot-with-aop-and-reflection/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/" data-title="用aop和注解重写bot" data-hashtags="Java,Aop,QQ bot"><i class="fab fa-twitter fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Facebook" data-sharer="facebook" data-url="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/" data-hashtag="Java"><i class="fab fa-facebook-square fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/" data-title="用aop和注解重写bot"><i class="fab fa-hacker-news fa-fw"></i></a><a href="#" onclick="return false;" title="分享到 Line" data-sharer="line" data-url="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/" data-title="用aop和注解重写bot"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="#" onclick="return false;" title="分享到 微博" data-sharer="weibo" data-url="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/" data-title="用aop和注解重写bot"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/aop/">Aop</a>,&nbsp;<a href="/tags/qq-bot/">QQ bot</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/generator-in-python/" class="next" rel="next" title="Python中的生成器">Python中的生成器<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">aimisaka</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">赣ICP备2021011694号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div><script>
+                    if('serviceWorker' in navigator) {
+                        navigator.serviceWorker
+                            .register('/sw.min.js', { scope: '/' })
+                            .then(function(registration) {
+                            });
+                
+                        navigator.serviceWorker
+                            .ready
+                            .then(function(registration) {
+                            });
+                    }
+                </script></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":40},"comment":{"valine":{"appId":"6earikgRRCchBadiiReOffny-gzGzoHsz","appKey":"stS9WTKUerB2o4l3JFRKvhxW","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":true,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"visitor":true}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"T4419EOPRY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"4ca26e2e3081d93cc68a3caa25bcc3f0","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"sharerjs":true,"table":{"sort":true}};</script><script type="text/javascript" src="/lib/valine/Valine.min.js" defer></script><script type="text/javascript" src="/js/valine.min.js" defer></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

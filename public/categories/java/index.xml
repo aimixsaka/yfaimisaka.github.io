@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Java - 分类 - AIMISAKA</title>
+        <link>https://blog.aimisaka.site/categories/java/</link>
+        <description>Java - 分类 - AIMISAKA</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>aimisaka@outlook.com (aimisaka)</managingEditor>
+            <webMaster>aimisaka@outlook.com (aimisaka)</webMaster><lastBuildDate>Fri, 29 Jul 2022 21:56:12 &#43;0800</lastBuildDate><atom:link href="https://blog.aimisaka.site/categories/java/" rel="self" type="application/rss+xml" /><item>
+    <title>用aop和注解重写bot</title>
+    <link>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</link>
+    <pubDate>Fri, 29 Jul 2022 21:56:12 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</guid>
+    <description><![CDATA[利用Java的反射和SpringBoot的Aop来简化qq bot]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,59 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AIMISAKA</title>
+        <link>https://blog.aimisaka.site/en/</link>
+        <description>AIMISAKA</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>aimisaka@outlook.com (aimisaka)</managingEditor>
+            <webMaster>aimisaka@outlook.com (aimisaka)</webMaster><lastBuildDate>Sun, 25 Sep 2022 15:00:28 &#43;0800</lastBuildDate>
+            <atom:link href="https://blog.aimisaka.site/en/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Go Overview</title>
+    <link>https://blog.aimisaka.site/en/go-overview/</link>
+    <pubDate>Sun, 25 Sep 2022 15:00:28 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/en/go-overview/</guid>
+    <description><![CDATA[Warningsorry, the author is too lazy too translate&hellip;]]></description>
+</item><item>
+    <title>Decorator in Python</title>
+    <link>https://blog.aimisaka.site/en/decorator-in-python/</link>
+    <pubDate>Sat, 30 Jul 2022 12:35:05 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/en/decorator-in-python/</guid>
+    <description><![CDATA[sorry, the author is too lazy to translate&hellip;]]></description>
+</item><item>
+    <title>Go Web</title>
+    <link>https://blog.aimisaka.site/en/go-web/</link>
+    <pubDate>Sat, 30 Jul 2022 11:41:45 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/en/go-web/</guid>
+    <description><![CDATA[sorry, the author is too lazy to translate&hellip;]]></description>
+</item><item>
+    <title>Go Request Responce</title>
+    <link>https://blog.aimisaka.site/en/go-request-responce/</link>
+    <pubDate>Sat, 30 Jul 2022 10:55:25 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/en/go-request-responce/</guid>
+    <description><![CDATA[sorry, the author is too lazy to translate&hellip;]]></description>
+</item><item>
+    <title>Generator in Python</title>
+    <link>https://blog.aimisaka.site/en/generator-in-python/</link>
+    <pubDate>Fri, 29 Jul 2022 22:23:26 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/en/generator-in-python/</guid>
+    <description><![CDATA[sorry, the author is too lazy to translate&hellip;]]></description>
+</item><item>
+    <title>rewrite my qq bot with aop and reflection</title>
+    <link>https://blog.aimisaka.site/en/rewrite-bot-with-aop-and-reflection/</link>
+    <pubDate>Fri, 29 Jul 2022 21:56:12 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/en/rewrite-bot-with-aop-and-reflection/</guid>
+    <description><![CDATA[sorry, the author is too lazy to translate&hellip;]]></description>
+</item><item>
+    <title>Go Concurrency</title>
+    <link>https://blog.aimisaka.site/en/go-concurrency/</link>
+    <pubDate>Fri, 29 Jul 2022 20:56:04 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/en/go-concurrency/</guid>
+    <description><![CDATA[Record the practical experience of go concurrency]]></description>
+</item></channel>
+</rss>
