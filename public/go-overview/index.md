@@ -73,6 +73,8 @@
 
 但是Go在不断改善（以每三个月一次小版本的形式，尤其是即将到来的`Go2`充满了令人激动的特性
 
+[Go的一些草案](https://go.googlesource.com/proposal/+/master/design/go2draft.md)
+
 让我们充满期待...**(* ^ ω ^)**
 
 {{< figure src="/images/go.webp" title="Go" >}}
