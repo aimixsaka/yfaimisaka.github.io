@@ -31,6 +31,10 @@
 
 ## $ Go怎么学
 
+### $ 前言
+
+其实学Go最好的地方就是[Go官网](https://go.dev/doc/)
+
 ### $ 入门
 
 - **Tour of Go** [English](https://go.dev/tour/welcome/1) | [中文](https://tour.go-zh.org/welcome/1)
@@ -39,13 +43,17 @@
 
 ### $ 初识Go的并发
 
-- [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
+- **Go Concurrency Patterns**
 
+  {{< youtube f6kdp27TYZs >}}
+  
   `Rob Pike`(Go的3个主要创始人之一) 的一场关于Go的并发模式的演讲，`Google I/O 2012`
 
 ### $ 更进一步了解Go
 
-- [Go Programming](https://www.youtube.com/watch?v=jgVhBThJdXc&t=1067s)
+- **Go Programming**
+
+  {{< youtube jgVhBThJdXc >}}
 
   另一场演讲，`Google I/O 2010`
 
@@ -53,13 +61,15 @@
 
   Go领域公认的 "圣经" （建议直接买纸质书
 
-- [Meet The Go Team](https://www.youtube.com/watch?v=sln-gJaURzk)
+- **Meet The Go Team**
 
+  {{< youtube sln-gJaURzk >}}
+  
   Go团队就一些Go设计问题的现场提问与回答 （**重点是看大佬** ：）
 
 ## $ Go的未来
 
-尽管Go非常优秀（ **(;¬_¬)** 不准质疑），但是Go也有美中不足的地方，比如Go的**错误处理**。
+尽管Go非常优秀（ **(;¬_¬)** 不准质疑），但是Go也有美中不足的地方，比如Go的**错误处理**
 
 但是Go在不断改善（以每三个月一次小版本的形式，尤其是即将到来的`Go2`充满了令人激动的特性
 
