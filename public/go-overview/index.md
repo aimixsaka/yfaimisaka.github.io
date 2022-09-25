@@ -45,7 +45,7 @@
 
 - [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
 
-  {{< youtube id="jgVhBThJdXc" title="Go Concurrency Patterns" >}}
+  {{< youtube id="f6kdp27TYZs" title="Go Concurrency Patterns" >}}
   
   `Rob Pike`(Go的3个主要创始人之一) 的一场关于Go的并发模式的演讲，`Google I/O 2012`
 
