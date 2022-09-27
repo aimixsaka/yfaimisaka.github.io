@@ -100,7 +100,7 @@ a_function_requiring_decration()
 
     并没有输出"a_function_requiring_decoration"。而被"wrap_the_function"替代了。
 
-    {{< /admonition >}}h
+    {{< /admonition >}}
     
     - 解决方案
     

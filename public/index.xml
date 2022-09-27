@@ -35,6 +35,13 @@
     </author><guid>https://blog.aimisaka.site/go-web/</guid>
     <description><![CDATA[Go中Web编程的一些基础概念和知识]]></description>
 </item><item>
+    <title>用aop和注解重写bot</title>
+    <link>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</link>
+    <pubDate>Fri, 29 Jul 2022 21:56:12 &#43;0800</pubDate><author>
+        <name>aimisaka</name>
+    </author><guid>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</guid>
+    <description><![CDATA[利用Java的反射和SpringBoot的Aop来简化qq bot]]></description>
+</item><item>
     <title>Python中的装饰器</title>
     <link>https://blog.aimisaka.site/decorator-in-python/</link>
     <pubDate>Sat, 30 Jul 2022 12:35:20 &#43;0800</pubDate><author>
@@ -48,12 +55,5 @@
         <name>aimisaka</name>
     </author><guid>https://blog.aimisaka.site/generator-in-python/</guid>
     <description><![CDATA[Python中的生成器和迭代器]]></description>
-</item><item>
-    <title>用aop和注解重写bot</title>
-    <link>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</link>
-    <pubDate>Fri, 29 Jul 2022 21:56:12 &#43;0800</pubDate><author>
-        <name>aimisaka</name>
-    </author><guid>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</guid>
-    <description><![CDATA[利用Java的反射和SpringBoot的Aop来简化qq bot]]></description>
 </item></channel>
 </rss>

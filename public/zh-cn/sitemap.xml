@@ -38,6 +38,15 @@
                     hreflang="zh-cn"
                     href="https://blog.aimisaka.site/go-web/"
                     /></url><url>
+            <loc>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</loc><lastmod>2022-07-29T21:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://blog.aimisaka.site/en/rewrite-bot-with-aop-and-reflection/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/"
+                    /></url><url>
             <loc>https://blog.aimisaka.site/</loc><lastmod>2022-09-25T15:00:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -137,15 +146,6 @@
             <loc>https://blog.aimisaka.site/tags/java/</loc><lastmod>2022-07-29T21:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://blog.aimisaka.site/categories/java/</loc><lastmod>2022-07-29T21:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://blog.aimisaka.site/tags/qq-bot/</loc><lastmod>2022-07-29T21:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/</loc><lastmod>2022-07-29T21:56:12&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://blog.aimisaka.site/en/rewrite-bot-with-aop-and-reflection/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://blog.aimisaka.site/rewrite-bot-with-aop-and-reflection/"
-                    /></url><url>
             <loc>https://blog.aimisaka.site/tags/%E5%B9%B6%E5%8F%91/</loc><lastmod>2022-07-29T20:56:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://blog.aimisaka.site/offline/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
