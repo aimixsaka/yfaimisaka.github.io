@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.aimisaka.site\/rewrite-bot-with-aop-and-reflection\/"
-        },"genre": "posts","keywords": "Java, Aop, QQ bot","wordcount":  2133 ,
+        },"genre": "posts","keywords": "Java, Aop, QQ bot","wordcount":  2139 ,
         "url": "https:\/\/blog.aimisaka.site\/rewrite-bot-with-aop-and-reflection\/","datePublished": "2022-07-29T21:56:12+08:00","dateModified": "2022-07-29T21:56:12+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -124,29 +124,29 @@
         <h2 class="toc-title">目录</h2>
         <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
-    <li><a href="#前言">？前言</a></li>
-    <li><a href="#基于注解加反射">？基于注解加反射</a>
+    <li><a href="#-前言">$ 前言</a></li>
+    <li><a href="#-基于注解加反射">$ 基于注解加反射</a>
       <ul>
-        <li><a href="#推">推</a></li>
-        <li><a href="#思路">思路</a></li>
-        <li><a href="#补充">补充</a></li>
+        <li><a href="#-推">$ 推</a></li>
+        <li><a href="#-思路">$ 思路</a></li>
+        <li><a href="#-补充">$ 补充</a></li>
       </ul>
     </li>
-    <li><a href="#基于注解和切面编程aop">？基于注解和切面编程(Aop)</a>
+    <li><a href="#-基于注解和切面编程aop">$ 基于注解和切面编程(Aop)</a>
       <ul>
-        <li><a href="#思路-1">思路</a></li>
-        <li><a href="#代码">代码</a></li>
-        <li><a href="#坑">坑</a></li>
+        <li><a href="#-思路-1">$ 思路</a></li>
+        <li><a href="#-代码">$ 代码</a></li>
+        <li><a href="#-坑">$ 坑</a></li>
       </ul>
     </li>
-    <li><a href="#比较与总结">？比较与总结</a></li>
+    <li><a href="#-比较与总结">$ 比较与总结</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">用aop和注解重写bot</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">aimisaka</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/java/"><i class="far fa-folder fa-fw"></i>Java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-29">2022-07-29</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-07-29">2022-07-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2133 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-29">2022-07-29</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-07-29">2022-07-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2139 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/rewrite-bot-with-aop-and-reflection/" class="leancloud_visitors" data-flag-title="用aop和注解重写bot">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count"></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -157,31 +157,31 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#前言">？前言</a></li>
-    <li><a href="#基于注解加反射">？基于注解加反射</a>
+    <li><a href="#-前言">$ 前言</a></li>
+    <li><a href="#-基于注解加反射">$ 基于注解加反射</a>
       <ul>
-        <li><a href="#推">推</a></li>
-        <li><a href="#思路">思路</a></li>
-        <li><a href="#补充">补充</a></li>
+        <li><a href="#-推">$ 推</a></li>
+        <li><a href="#-思路">$ 思路</a></li>
+        <li><a href="#-补充">$ 补充</a></li>
       </ul>
     </li>
-    <li><a href="#基于注解和切面编程aop">？基于注解和切面编程(Aop)</a>
+    <li><a href="#-基于注解和切面编程aop">$ 基于注解和切面编程(Aop)</a>
       <ul>
-        <li><a href="#思路-1">思路</a></li>
-        <li><a href="#代码">代码</a></li>
-        <li><a href="#坑">坑</a></li>
+        <li><a href="#-思路-1">$ 思路</a></li>
+        <li><a href="#-代码">$ 代码</a></li>
+        <li><a href="#-坑">$ 坑</a></li>
       </ul>
     </li>
-    <li><a href="#比较与总结">？比较与总结</a></li>
+    <li><a href="#-比较与总结">$ 比较与总结</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="前言" class="headerLink">
-    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>？前言</h2><p>之前就有个想法把bot用spring重写一下。了解完一些基础的东西后终于能开写了。</p>
-<h2 id="基于注解加反射" class="headerLink">
-    <a href="#%e5%9f%ba%e4%ba%8e%e6%b3%a8%e8%a7%a3%e5%8a%a0%e5%8f%8d%e5%b0%84" class="header-mark"></a>？基于注解加反射</h2><h3 id="推" class="headerLink">
-    <a href="#%e6%8e%a8" class="header-mark"></a>推</h3><p>这一点是看了<a href="https://nuotian.furry.pro/blog/archives/244" target="_blank" rel="noopener noreffer"><code>诺天的博客</code></a>。</p>
-<h3 id="思路" class="headerLink">
-    <a href="#%e6%80%9d%e8%b7%af" class="header-mark"></a>思路</h3><ul>
+            </div><div class="content" id="content"><h2 id="-前言" class="headerLink">
+    <a href="#-%e5%89%8d%e8%a8%80" class="header-mark"></a>$ 前言</h2><p>之前就有个想法把bot用spring重写一下。了解完一些基础的东西后终于能开写了。</p>
+<h2 id="-基于注解加反射" class="headerLink">
+    <a href="#-%e5%9f%ba%e4%ba%8e%e6%b3%a8%e8%a7%a3%e5%8a%a0%e5%8f%8d%e5%b0%84" class="header-mark"></a>$ 基于注解加反射</h2><h3 id="-推" class="headerLink">
+    <a href="#-%e6%8e%a8" class="header-mark"></a>$ 推</h3><p>这一点是看了<a href="https://nuotian.furry.pro/blog/archives/244" target="_blank" rel="noopener noreffer"><code>诺天的博客</code></a>。</p>
+<h3 id="-思路" class="headerLink">
+    <a href="#-%e6%80%9d%e8%b7%af" class="header-mark"></a>$ 思路</h3><ul>
 <li>
 <ol>
 <li>写个自定义注解用以标记方法</li>
@@ -211,8 +211,8 @@
 </ol>
 </li>
 </ul>
-<h3 id="补充" class="headerLink">
-    <a href="#%e8%a1%a5%e5%85%85" class="header-mark"></a>补充</h3><p>博客里写的已经很详细了。但是总感觉有些功能还可以再补充一下：</p>
+<h3 id="-补充" class="headerLink">
+    <a href="#-%e8%a1%a5%e5%85%85" class="header-mark"></a>$ 补充</h3><p>博客里写的已经很详细了。但是总感觉有些功能还可以再补充一下：</p>
 <ul>
 <li>
 <p>逻辑判断和多种权限：</p>
@@ -286,12 +286,12 @@
 </ul>
 </li>
 </ul>
-<h2 id="基于注解和切面编程aop" class="headerLink">
-    <a href="#%e5%9f%ba%e4%ba%8e%e6%b3%a8%e8%a7%a3%e5%92%8c%e5%88%87%e9%9d%a2%e7%bc%96%e7%a8%8baop" class="header-mark"></a>？基于注解和切面编程(Aop)</h2><p>因为Aop是根据反射开发的，于是我想能不能用Aop写一个。</p>
-<h3 id="思路-1" class="headerLink">
-    <a href="#%e6%80%9d%e8%b7%af-1" class="header-mark"></a>思路</h3><p>利用Aop对被指定注解标记的方法进行增强。在方法执行前进行一个判断。</p>
-<h3 id="代码" class="headerLink">
-    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码</h3><p>Aop部分：</p>
+<h2 id="-基于注解和切面编程aop" class="headerLink">
+    <a href="#-%e5%9f%ba%e4%ba%8e%e6%b3%a8%e8%a7%a3%e5%92%8c%e5%88%87%e9%9d%a2%e7%bc%96%e7%a8%8baop" class="header-mark"></a>$ 基于注解和切面编程(Aop)</h2><p>因为Aop是根据反射开发的，于是我想能不能用Aop写一个。</p>
+<h3 id="-思路-1" class="headerLink">
+    <a href="#-%e6%80%9d%e8%b7%af-1" class="header-mark"></a>$ 思路</h3><p>利用Aop对被指定注解标记的方法进行增强。在方法执行前进行一个判断。</p>
+<h3 id="-代码" class="headerLink">
+    <a href="#-%e4%bb%a3%e7%a0%81" class="header-mark"></a>$ 代码</h3><p>Aop部分：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -345,7 +345,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// 切入点 实际切入的方法
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 注意是对Events切入，因为多个Event注解其实在获取的时候会转换成@Events({@Event(xx), @Event(xx)})
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@PointCut</span><span class="o">(</span><span class="s">&#34;@annotation(com.yanfang.animabotaop.annotations.Events)&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">judgeMethodPointCut</span><span class="o">()</span> <span class="o">{}</span> <span class="c1">// 切入方法？
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">judgeMethodPointCut</span><span class="o">()</span> <span class="o">{}</span> <span class="c1">// 切入方法$
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 环绕通知
 </span></span></span><span class="line"><span class="cl"><span class="c1">// &amp;&amp; @annotation(events)是传入参数给通知方法的一种手段，可以省去声明
@@ -438,8 +438,8 @@
 </div>
 </div><p>结果：</p>
 <p>authority为true时发送了get， 为false时没发送get。说明执行了环绕通知</p>
-<h3 id="坑" class="headerLink">
-    <a href="#%e5%9d%91" class="header-mark"></a>坑</h3><ul>
+<h3 id="-坑" class="headerLink">
+    <a href="#-%e5%9d%91" class="header-mark"></a>$ 坑</h3><ul>
 <li>注意Aop和反射不同的一点是：反射可以帮助传入实参；而Aop只能获取方法被传入的实参进行处理，而不能传入参数（毕竟Aop的原衷是不影响方法本身的情况下进行对方法的增强。
 <ul>
 <li>而实参在监听器方法里传入</li>
@@ -448,8 +448,8 @@
 <li>这里不能通过获取所有Event注解， 再分别进行处理，而需要获取@Events，再通过它的value()元素获取所有的@Event注解 [即使表面上可以在方法上多写几个@Event注解。但实际是<code>@Events({@Event(...), @Event(...)})</code>,但是用反射好像可以直接获取多个@Event注解进行遍历处理</li>
 <li>注意通知的方法<code>around()</code>传参不能直接传入，而是需要在<code>@Around</code>中传入。否则会<code>报空</code>。（其实是获取方法上的@Events注解，然后传进around()方法</li>
 </ul>
-<h2 id="比较与总结" class="headerLink">
-    <a href="#%e6%af%94%e8%be%83%e4%b8%8e%e6%80%bb%e7%bb%93" class="header-mark"></a>？比较与总结</h2><p>总的来说，各有优缺。</p>
+<h2 id="-比较与总结" class="headerLink">
+    <a href="#-%e6%af%94%e8%be%83%e4%b8%8e%e6%80%bb%e7%bb%93" class="header-mark"></a>$ 比较与总结</h2><p>总的来说，各有优缺。</p>
 <ul>
 <li>
 <p>反射：先进行判断，然后再根据判断结果来决定是否执行方法</p>

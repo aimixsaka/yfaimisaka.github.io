@@ -124,9 +124,9 @@
         <h2 class="toc-title">目录</h2>
         <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
-    <li><a href="#-前言">? 前言</a>
+    <li><a href="#-前言">$ 前言</a>
       <ul>
-        <li><a href="#-内容">? 内容</a></li>
+        <li><a href="#-内容">$ 内容</a></li>
       </ul>
     </li>
   </ul>
@@ -146,17 +146,17 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#-前言">? 前言</a>
+    <li><a href="#-前言">$ 前言</a>
       <ul>
-        <li><a href="#-内容">? 内容</a></li>
+        <li><a href="#-内容">$ 内容</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="-前言" class="headerLink">
-    <a href="#-%e5%89%8d%e8%a8%80" class="header-mark"></a>? 前言</h2><p>记录一下go并发的实践经验</p>
+    <a href="#-%e5%89%8d%e8%a8%80" class="header-mark"></a>$ 前言</h2><p>记录一下go并发的实践经验</p>
 <h3 id="-内容" class="headerLink">
-    <a href="#-%e5%86%85%e5%ae%b9" class="header-mark"></a>? 内容</h3><ul>
+    <a href="#-%e5%86%85%e5%ae%b9" class="header-mark"></a>$ 内容</h3><ul>
 <li>当出现死锁时，考虑是否已用<code>make</code>将声明的<code>chan</code>初始化</li>
 <li>永远在<strong>不同的</strong><code>goroutine</code>中发送和接收<code>chan</code>中的值，不要试图在main中发送并接收值</li>
 <li>如果<code>chan</code>是<strong>无缓冲的</strong>，总是<strong>先</strong>运行一个<code>goroutine</code>来发送或接收值，<strong>然后</strong>再在main(或其它<code>goroutine</code>)中接收或发送</li>

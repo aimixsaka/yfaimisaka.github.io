@@ -124,11 +124,11 @@
         <h2 class="toc-title">目录</h2>
         <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
-    <li><a href="#-前言">? 前言</a>
+    <li><a href="#-前言">$ 前言</a>
       <ul>
-        <li><a href="#-多路复用器">? 多路复用器</a></li>
-        <li><a href="#--服务器">?  服务器</a></li>
-        <li><a href="#--处理器和处理器函数">?  处理器和处理器函数</a></li>
+        <li><a href="#-多路复用器">$ 多路复用器</a></li>
+        <li><a href="#--服务器">$  服务器</a></li>
+        <li><a href="#--处理器和处理器函数">$  处理器和处理器函数</a></li>
       </ul>
     </li>
   </ul>
@@ -148,19 +148,19 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#-前言">? 前言</a>
+    <li><a href="#-前言">$ 前言</a>
       <ul>
-        <li><a href="#-多路复用器">? 多路复用器</a></li>
-        <li><a href="#--服务器">?  服务器</a></li>
-        <li><a href="#--处理器和处理器函数">?  处理器和处理器函数</a></li>
+        <li><a href="#-多路复用器">$ 多路复用器</a></li>
+        <li><a href="#--服务器">$  服务器</a></li>
+        <li><a href="#--处理器和处理器函数">$  处理器和处理器函数</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="-前言" class="headerLink">
-    <a href="#-%e5%89%8d%e8%a8%80" class="header-mark"></a>? 前言</h2><p>最近看了下<code>Go Web编程</code>这本书，再去看了下源码，想对<code>net/http</code>包中的一些关键的函数，接口的定义和关系做一个记录</p>
+    <a href="#-%e5%89%8d%e8%a8%80" class="header-mark"></a>$ 前言</h2><p>最近看了下<code>Go Web编程</code>这本书，再去看了下源码，想对<code>net/http</code>包中的一些关键的函数，接口的定义和关系做一个记录</p>
 <h3 id="-多路复用器" class="headerLink">
-    <a href="#-%e5%a4%9a%e8%b7%af%e5%a4%8d%e7%94%a8%e5%99%a8" class="header-mark"></a>? 多路复用器</h3><blockquote>
+    <a href="#-%e5%a4%9a%e8%b7%af%e5%a4%8d%e7%94%a8%e5%99%a8" class="header-mark"></a>$ 多路复用器</h3><blockquote>
 <p>Go中web应用需要对客户端的请求响应，为了将不同请求URL转发到不同的处理器(Handler)进行处理需要用到多路复用器(ServeMux)</p>
 </blockquote>
 <ul>
@@ -209,7 +209,7 @@
 </div></li>
 </ul>
 <h3 id="--服务器" class="headerLink">
-    <a href="#--%e6%9c%8d%e5%8a%a1%e5%99%a8" class="header-mark"></a>?  服务器</h3><blockquote>
+    <a href="#--%e6%9c%8d%e5%8a%a1%e5%99%a8" class="header-mark"></a>$  服务器</h3><blockquote>
 <p>负责启动监听和配置服务</p>
 <p>如果简单配置可以直接调<code>http.ListenAndServe</code>函数来进行监听，复杂配置则需要构建一个Server结构体来调用其ListenAndServe方法</p>
 </blockquote>
@@ -276,7 +276,7 @@
 </li>
 </ul>
 <h3 id="--处理器和处理器函数" class="headerLink">
-    <a href="#--%e5%a4%84%e7%90%86%e5%99%a8%e5%92%8c%e5%a4%84%e7%90%86%e5%99%a8%e5%87%bd%e6%95%b0" class="header-mark"></a>?  处理器和处理器函数</h3><blockquote>
+    <a href="#--%e5%a4%84%e7%90%86%e5%99%a8%e5%92%8c%e5%a4%84%e7%90%86%e5%99%a8%e5%87%bd%e6%95%b0" class="header-mark"></a>$  处理器和处理器函数</h3><blockquote>
 <p>Go web中实际处理请求的函数或类型</p>
 <p>处理器：实现了Handler接口的任意类型，可以是结构体，函数类型等</p>
 <p>处理器函数：普通的函数，但是必须要以 <code>http.ResponseWriter</code>和<code>*http.Request</code>为参数</p>

@@ -1,11 +1,11 @@
 # Go Concurrency
 
 
-## ? Before Write
+## $ Before Write
 
 Write this article to record the practical experience of go concurrency
 
-### ? Content
+### $ Content
 
 - When deadlock occurs, consider whether the declared `chan` has been initialized with `make`
 - Always send and receive values in `chan` in **different** `goroutine`, don't try to send and receive values in main

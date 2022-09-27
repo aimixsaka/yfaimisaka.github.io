@@ -124,9 +124,9 @@
         <h2 class="toc-title">Contents</h2>
         <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
-    <li><a href="#-before-write">? Before Write</a>
+    <li><a href="#-before-write">$ Before Write</a>
       <ul>
-        <li><a href="#-content">? Content</a></li>
+        <li><a href="#-content">$ Content</a></li>
       </ul>
     </li>
   </ul>
@@ -146,17 +146,17 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#-before-write">? Before Write</a>
+    <li><a href="#-before-write">$ Before Write</a>
       <ul>
-        <li><a href="#-content">? Content</a></li>
+        <li><a href="#-content">$ Content</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="-before-write" class="headerLink">
-    <a href="#-before-write" class="header-mark"></a>? Before Write</h2><p>Write this article to record the practical experience of go concurrency</p>
+    <a href="#-before-write" class="header-mark"></a>$ Before Write</h2><p>Write this article to record the practical experience of go concurrency</p>
 <h3 id="-content" class="headerLink">
-    <a href="#-content" class="header-mark"></a>? Content</h3><ul>
+    <a href="#-content" class="header-mark"></a>$ Content</h3><ul>
 <li>When deadlock occurs, consider whether the declared <code>chan</code> has been initialized with <code>make</code></li>
 <li>Always send and receive values in <code>chan</code> in <strong>different</strong> <code>goroutine</code>, don&rsquo;t try to send and receive values in main</li>
 <li>If <code>chan</code> is <strong>unbuffered</strong>, always <strong>first</strong> run a <code>goroutine</code> to send or receive values, then** in main (or other <code>goroutine</code>) to receive or send</li>

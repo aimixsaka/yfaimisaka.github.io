@@ -1,13 +1,13 @@
 # Go中的请求和响应
 
 
-## ? 前言
+## $ 前言
 
 记录一下`go`中的请求和响应处理
 
-## ? 请求
+## $ 请求
 
-### ? Request结构
+### $ Request结构
 
 - `Request`结构既可以用于客户端也可以用于服务端
 
@@ -89,7 +89,7 @@
   
   ```
 
-#### ? URL字段
+#### $ URL字段
 
 - `URL`结构体
 
@@ -109,14 +109,14 @@
 
 - `URL`的一般结构
 
-  > scheme://[ userinfo@]host/path\[?query][#fragment]
+  > scheme://[ userinfo@]host/path\[$query][#fragment]
 
-#### ? Header字段
+#### $ Header字段
 
 - 一个 首部就是一个映射， 这个映射的键为字符串， 值为字符串切片
 
 
-##### ? 获取和设置或修改Header中字段
+##### $ 获取和设置或修改Header中字段
 
 - 1. 通过切片访问`Header`中的特定字段，返回切片
 
@@ -130,7 +130,7 @@
 
      结果：`gzip, deflate`
 
-#### ? Body字段
+#### $ Body字段
 
 - `Body`是一个`ReadCloser `接口， 该接口既包含了`Reader`接口，也包含了`Closer`接口
 
@@ -162,9 +162,9 @@
 
   
 
-### ? Go与HTML表单
+### $ Go与HTML表单
 
-#### ? HTML表单的一般形式
+#### $ HTML表单的一般形式
 
 ```html
 <form action="/process" method="post" enctype="application/x-www-form-urlencoded">
@@ -174,7 +174,7 @@
 </form>
 ```
 
-#### ? 数据编码方式
+#### $ 数据编码方式
 
 - `application/x-www-form-urlencoded`
 
@@ -188,15 +188,15 @@
 
   HTML5支持
 
-> 如何选择 ?
+> 如何选择 $
 >
 > - `application/x-www-form-urlencoded` （简单文本数据
 > - `multipart/form-data` （传输大量数据，如上传文件
 > - `text/plain` （``Base64`编码，文本方式传输二进制数据
 
-### ? 表单的解析
+### $ 表单的解析
 
-#### ? 手动解析
+#### $ 手动解析
 
 > `application/x-www-form-urlencoded`编码
 
@@ -210,7 +210,7 @@
 - 1. 先调用`w.ParseMultipartForm()`方法
 - 2. 通过`w.MultipartForm`字段访问表单数据或获取上传的文件
 
-#### ? 自动解析
+#### $ 自动解析
 
 - `FormValue(key string)`
 - `PostFormValue(key string)`
@@ -219,7 +219,7 @@
 
 > 注：如果对应该键的值不止一个，方法只返回第一个值
 
-### ? 文件上传和接收
+### $ 文件上传和接收
 
 **举个例子**
 
@@ -232,7 +232,7 @@
       < title>Go Web Programming</title> 
     </head> 　
     <body> 　 
-      <form action="http://localhost:8080/process?hello=world&thread=123" method="post" enctype="multipart/form-data"> 　 　
+      <form action="http://localhost:8080/process$hello=world&thread=123" method="post" enctype="multipart/form-data"> 　 　
          <input type="text" name="hello" value="sau sheong"/> 　 　 
          <input type="text" name="post" value="456"/> 　 　 　
          <input type="file" name="uploaded"/>
