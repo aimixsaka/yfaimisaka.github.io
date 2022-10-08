@@ -47,7 +47,7 @@
 
 - [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
 
-  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/f6kdp27TYZs?autoplay=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="Go Concurrency Patterns"></iframe> </div>
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/f6kdp27TYZs?autoplay=0" style="position: absolute; top: 0; left: 0; width: 50%; height: 50%; border:0;" allowfullscreen title="Go Concurrency Patterns"></iframe> </div>
   
   `Rob Pike`(Go的3个主要创始人之一) 的一场关于Go的并发模式的演讲，`Google I/O 2012`
 
