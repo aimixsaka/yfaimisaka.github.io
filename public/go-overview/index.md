@@ -40,12 +40,14 @@
 - **Tour of Go** [English](https://go.dev/tour/welcome/1) | [中文](https://tour.go-zh.org/welcome/1)
 
   Go官方的入门之旅。看完就基本学完了Go的所有语法（就是这么简洁与简单
+  
+- **Learn X in Y Minutes** [English](https://learnxinyminutes.com/docs/go/) | [中文](https://learnxinyminutes.com/docs/zh-cn/go-cn/)
 
 ### $ 初识Go的并发
 
 - [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
 
-  {{< youtube id="f6kdp27TYZs" title="Go Concurrency Patterns" >}}
+  {{< youtube id="f6kdp27TYZs" title="Go Concurrency Patterns" height=400 width=300 >}}
   
   `Rob Pike`(Go的3个主要创始人之一) 的一场关于Go的并发模式的演讲，`Google I/O 2012`
 
