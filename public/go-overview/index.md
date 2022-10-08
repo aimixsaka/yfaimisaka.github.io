@@ -47,7 +47,7 @@
 
 - [Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs)
 
-  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/f6kdp27TYZs?autoplay=0" style="position: absolute; top: 0; left: 0; width: 55%; height: 55%; border:0;" allowfullscreen title="Go Concurrency Patterns"></iframe> </div>
+  <div style="position: relative; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/f6kdp27TYZs?autoplay=0" style="position: absolute; top: 0; left: 0; width: 55%; height: 55%; border:0;" allowfullscreen title="Go Concurrency Patterns"></iframe> </div>
   
   `Rob Pike`(Go的3个主要创始人之一) 的一场关于Go的并发模式的演讲，`Google I/O 2012`
 
@@ -55,7 +55,7 @@
 
 - [Go Programming](https://www.youtube.com/watch?v=jgVhBThJdXc&t=1067s)
 
-  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/jgVhBThJdXc?autoplay=0" style="position: absolute; top: 0; left: 0; width: 55%; height: 55%; border:0;" allowfullscreen title="Go Programming"></iframe> </div>
+  <div style="position: relative; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/jgVhBThJdXc?autoplay=0" style="position: absolute; top: 0; left: 0; width: 55%; height: 55%; border:0;" allowfullscreen title="Go Programming"></iframe> </div>
 
   另一场演讲，`Google I/O 2010`
 
@@ -65,7 +65,7 @@
 
 - [Meet The Go Team](https://www.youtube.com/watch?v=sln-gJaURzk)
 
-  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/sln-gJaURzk?autoplay=0" style="position: absolute; top: 0; left: 0; width: 55%; height: 55%; border:0;" allowfullscreen title="Meet The Go Team"></iframe> </div>
+  <div style="position: relative; height: 0; overflow: hidden;">   <iframe src="https://www.youtube.com/embed/sln-gJaURzk?autoplay=0" style="position: absolute; top: 0; left: 0; width: 55%; height: 55%; border:0;" allowfullscreen title="Meet The Go Team"></iframe> </div>
   
   Go团队就一些Go设计问题的现场提问与回答 （**重点是看大佬** ：）
   
